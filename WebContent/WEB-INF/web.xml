@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>wxpf</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  	<listener>
+		<listener-class>net.linvx.java.wx.task.ProjectTask</listener-class>
+	</listener>
+	<servlet>
+		<servlet-name>MsgReceiverServlet</servlet-name>
+		<servlet-class>net.linvx.java.wx.api.MsgReceiverServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MsgReceiverServlet</servlet-name>
+		<url-pattern>/api/r.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>WeixinApiServlet</servlet-name>
+		<servlet-class>net.linvx.java.wx.api.WeixinApiServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>WeixinApiServlet</servlet-name>
+		<url-pattern>/api/s.do</url-pattern>
+	</servlet-mapping>
+	<!--配置过滤器-->
+	<filter>
+		<filter-name>OAuthFilter</filter-name>
+		<filter-class>net.linvx.java.wx.filter.OAuthFilter</filter-class>
+	</filter>
+	<!--映射过滤器-->
+	<filter-mapping>
+		<filter-name>OAuthFilter</filter-name>
+		<!--“/*”表示拦截所有的请求 -->
+		<url-pattern>/h5/*</url-pattern>
+	</filter-mapping>
+	
+</web-app>
